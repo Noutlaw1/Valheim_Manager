@@ -1,6 +1,7 @@
 <h1 style="color: #4485b8;">Valheim Manager</h1>
 <h4></h4>
-<table style="vertical-align: top;  border-style: solid; background-color: #4485b8; border-collapse: collapse; table-la><thead>
+<table style="vertical-align: top;  border-style: solid; background-color: #4485b8; border-collapse: collapse; table-layout: auto;" border="1">
+<thead>
 <tr>
 <form method="post" action="manage">
 <td style="width: 139.9px;"><strong>Container Name</strong></td>
@@ -10,9 +11,10 @@
 </thead>
 {% for container in container_list %}
     <tr>
-       <td> {{ container.name }} </td><td> {{ container.status }} </td> <td><input type="checkbox" name="container_sele>
+       <td> {{ container.name }} </td><td> {{ container.status }} </td> <td><input type="checkbox" name="container_select" value=" {{ container.name }} ">
+
     </tr>
     {% endfor %}
 </table>
 <hr />
-<p><button type="submit" method="post" name=start style="background-color: #4485b8; color: #fff; display: inline-block;>
+<p><button type="submit" method="post" name=start style="background-color: #4485b8; color: #fff; display: inline-block; padding: 2px 8px; font-weight: bold; border-radius: 5px;">Start</button><button type="submit" method="post" name=restart style="background-color: #4485b8; color: #fff; display: inline-block; padding: 2px 8px; font-weight: bold; border-radius: 5px;">Restart</button><button type="submit" method="post" name=shutdown style="background-color: #4485b8; color: #fff; display: inline-block; padding: 2px 8px; font-weight: bold; border-radius: 5px;">Shutdown</button><button type="submit" method="post" name=backup style="background-color: #4485b8; color: #fff; display: inline-block; padding: 2px 8px; font-weight: bold; border-radius: 5px;">Backup</button></p></form>
