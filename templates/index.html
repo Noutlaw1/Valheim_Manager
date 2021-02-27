@@ -1,0 +1,18 @@
+<h1 style="color: #4485b8;">Valheim Manager</h1>
+<h4></h4>
+<table style="vertical-align: top;  border-style: solid; background-color: #4485b8; border-collapse: collapse; table-la><thead>
+<tr>
+<form method="post" action="manage">
+<td style="width: 139.9px;"><strong>Container Name</strong></td>
+<td style="width: 350.6px;"><strong>Container Status</strong></td>
+<td><strong>Select</strong></td>
+</tr>
+</thead>
+{% for container in container_list %}
+    <tr>
+       <td> {{ container.name }} </td><td> {{ container.status }} </td> <td><input type="checkbox" name="container_sele>
+    </tr>
+    {% endfor %}
+</table>
+<hr />
+<p><button type="submit" method="post" name=start style="background-color: #4485b8; color: #fff; display: inline-block;>
