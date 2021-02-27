@@ -1,6 +1,8 @@
 import docker
 from flask import Flask, abort, render_template, redirect, current_app, request, url_for
 from config import Config
+from pathlib import Path
+import subprocess
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -16,7 +18,7 @@ def index():
     return render_template('index.html', container_list=container_list)
 
 def query_container(client):
-   containers = client.containers.list(all=True), filters={"name":"valheim"})
+   containers = client.containers.list(all=True, filters={"name":"valheim"})
    return containers
 
 @app.route("/manage", methods=['POST'])
@@ -66,6 +68,13 @@ def manage():
          except Exception as e:
             app.logger.warning("Error restarting container " + item_name)
             app.logger.warning("Exception: {0}".format(e))
+   elif 'backup' in request.form:
+      app.logger.warning("Backup button clicked.")
+      valheim_directory = Path(current_app.config["VALHEIM_DIR"])
+      script_path = valheim_directory / current_app.config["BACKUP_SCRIPT"]
+      app.logger.warning("Executing backup script")
+      subprocess.call(str(script_path), shell=True)
+
    app.logger.warning("Redirecting...")
    return redirect(url_for('index'))
 
